@@ -21,15 +21,12 @@ int main (int argc, char **argv)
 	else if ((!ft_strncmp(argv[1], "mandelbrot", 10) && argc == 2) 
 			|| (!ft_strncmp(argv[1], "julia", 5) && argc == 4))
 	{
-		// TODO 
-		// mlx stuff
 		if (!ft_strncmp(argv[1], "julia", 5))
 		{
-			fractal.julia_x = atodbl(argv[3]);
-			fractal.julia_y = atodbl(argv[4]);
+			fractal.julia_x = atodbl(argv[2]);
+			fractal.julia_y = atodbl(argv[3]);
 		}
-		fractal.name = argv[1];
-		ft_init_win(&fractal);
+		fractal.name = ft_strdup(argv[1]);
 		fractal_init(&fractal);
 		fractal_render(&fractal);
 

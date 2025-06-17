@@ -7,7 +7,10 @@
 # include <stdlib.h>
 # include <math.h>
 # include "libft/libft.h"
-# include "minilibx_macos/mlx.h"
+# include "minilibx-linux/mlx.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
+
 
 /*	WINDOW SIZE	*/
 # define WIDTH 800
@@ -21,13 +24,15 @@
 #define BLUE        0x0000FF  // RGB(0, 0, 255)
 
 /*	FOR MAC COMPILATION	*/
-#define KEY_PRESS         2
-#define KEY_RELEASE       3
-#define BUTTON_PRESS      4
-#define BUTTON_RELEASE    5
-#define MOTION_NOTIFY     6
-#define DESTROY_NOTIFY   17
+// #define KEY_PRESS         2
+// #define KEY_RELEASE       3
+// #define BUTTON_PRESS      4
+// #define BUTTON_RELEASE    5
+// #define MOTION_NOTIFY     6
+// #define DESTROY_NOTIFY   17
 /*-------------------------*/
+
+
 typedef struct s_com
 {
 	double	x;	// real 
@@ -82,10 +87,10 @@ double	atodbl(char *s);
 void	fractal_init(t_fractal *fractal);
 void	fractal_render(t_fractal *fractal);
 void	handle_pixel(int x, int y, t_fractal *fractal);
-
+void    data_init(t_fractal *fractal);
 //	events.c
 int key_handler(int key, t_fractal *fractal);
-int	mouse_handler(int btn, t_fractal *fractal);
+int	mouse_handler(int btn, int x, int y, t_fractal *fractal);
 int	julia(int x, int y, t_fractal *fractal);
 int close_handler(t_fractal *fractal);
 

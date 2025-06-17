@@ -13,14 +13,15 @@
 #include "fractol.h"
 
 //	LINUX VERSION
-// void	events_init(t_fractal *fractal)
-// {
-// 	mlx_hook(fractal->mlx_win_ptr, KeyPress, KeyPressMask, key_handler, fractal);
-// 	mlx_hook(fractal->mlx_win_ptr, ButtonPress, ButtonPressMask, mouse_handler, fractal);
-// 	mlx_hook(fractal->mlx_win_ptr, DestroyNotify, StructureNotifyMask, close_handler, fractal);
-// 	mlx_hook(fractal->mlx_win_ptr, MotionNotify, PointerMotionMask, julia, fractal);
-// }
+ void	events_init(t_fractal *fractal)
+ {
+ 	mlx_hook(fractal->mlx_win_ptr, KeyPress, KeyPressMask, key_handler, fractal);
+ 	mlx_hook(fractal->mlx_win_ptr, ButtonPress, ButtonPressMask, mouse_handler, fractal);
+    mlx_hook(fractal->mlx_win_ptr, DestroyNotify, StructureNotifyMask, close_handler, fractal);
+ 	mlx_hook(fractal->mlx_win_ptr, MotionNotify, PointerMotionMask, julia, fractal);
+ }
 
+/*
 //	MAC VERSION
 void	events_init(t_fractal *fractal)
 {
@@ -29,13 +30,15 @@ void	events_init(t_fractal *fractal)
 	mlx_hook(fractal->mlx_win_ptr, DESTROY_NOTIFY, 0, close_handler, fractal);
 	mlx_hook(fractal->mlx_win_ptr, MOTION_NOTIFY, 0, julia, fractal);
 }
+*/
+
 void	data_init(t_fractal *fractal)
 {
 	fractal->escaped_val = 4;
 	fractal->iteration = 42;	// starting iteration value
 	fractal->shift_x = 0;
 	fractal->shift_y = 0;
-	fractal->zoom = 1;
+	fractal->zoom = 1.0;
 }
 
 void	fractal_init(t_fractal *fractal)
@@ -50,13 +53,13 @@ void	fractal_init(t_fractal *fractal)
 	if (fractal->img.img_ptr == NULL)
 	{
 		mlx_destroy_window(fractal->mlx_ptr, fractal->mlx_win_ptr);
-		// mlx_destroy_display(fractal->mlx_ptr);	// uncomment on linux
+		mlx_destroy_display(fractal->mlx_ptr);	// uncomment on linux
 		free(fractal->mlx_ptr);
 		error_handler();
 	}
 	fractal->img.pixel_ptr = mlx_get_data_addr(fractal->img.img_ptr, &fractal->img.bpp,
 											 &fractal->img.line_len, &fractal->img.endian);
-	events_init(fractal);
+    events_init(fractal);
 	data_init(fractal);	
 }
 
@@ -82,7 +85,7 @@ void	handle_pixel(int x, int y, t_fractal *fractal)
 		}
 		i++;
 	}
-	pixel_put(x, y, &fractal->img, WHITE);	//	TODO
+	pixel_put(x, y, &fractal->img, WHITE);
 }
 
 void	fractal_render(t_fractal *fractal)

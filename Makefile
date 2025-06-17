@@ -1,15 +1,13 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -DGL_SILENCE_DEPRECATION -I./ -I$(MINILIBX_PATH) -I$(LIB_PATH)
-GNL_SRC = gnl/get_next_line.c gnl/get_next_line_utils.c
-SRC =  main.c win_utils.c utils.c math_utils.c fractol_utils.c $(GNL_SRC)
+CFLAGS = -Wall -Wextra -Werror -DGL_SILENCE_DEPRECATION -g -I./ -I$(MINILIBX_PATH) -I$(LIB_PATH)
+SRC =  main.c win_utils.c utils.c math_utils.c fractol_utils.c events.c
 OBJS = $(SRC:.c=.o)
 NAME = fractol
 AR = ar rcs
 
-# minilibx (macOS)
-MINILIBX_PATH = minilibx_macos
+MINILIBX_PATH = minilibx-linux
 MINILBX = $(MINILIBX_PATH)/
-MLX_LIBS = -L$(MINILIBX_PATH) -lmlx -framework OpenGL -framework AppKit
+MLX_LIBS = -L$(MINILIBX_PATH) -lmlx -lXext -lX11 -lm -lbsd
 
 # libft
 LIB_PATH = ./libft

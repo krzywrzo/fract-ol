@@ -32,6 +32,6 @@ int	ft_exit_handler(int keycode, t_fractal *fractal)
 void	ft_clean(t_fractal *fractal)
 {
 	mlx_destroy_window(fractal->mlx_ptr, fractal->mlx_win_ptr);
-	// mlx_destroy_display(fractal->mlx_ptr);   // uncomment on linux
+	mlx_destroy_display(fractal->mlx_ptr);   // uncomment on linux
 	free(fractal->mlx_ptr);
 }

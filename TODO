@@ -1,0 +1,7 @@
+TO FIX:
+-> julia not responding to scroll events 
+-> julia not responding to close_handler
+
+TODO:
+-> fix memory leak 
+-> write appropriate struct freeing function 
