@@ -20,6 +20,14 @@
 #define GREEN       0x00FF00  // RGB(0, 255, 0)
 #define BLUE        0x0000FF  // RGB(0, 0, 255)
 
+/*	FOR MAC COMPILATION	*/
+#define KEY_PRESS         2
+#define KEY_RELEASE       3
+#define BUTTON_PRESS      4
+#define BUTTON_RELEASE    5
+#define MOTION_NOTIFY     6
+#define DESTROY_NOTIFY   17
+/*-------------------------*/
 typedef struct s_com
 {
 	double	x;	// real 
@@ -68,7 +76,17 @@ void	pixel_put(int x, int y, t_img *img, int color);
 double map(double unscaled_num, double new_min, double new_max, double old_min, double old_max);
 t_com	sum_com(t_com num, t_com num2);
 t_com  sqrt_com(t_com num);
+double	atodbl(char *s);
 
 //	fractal_utils.c
 void	fractal_init(t_fractal *fractal);
+void	fractal_render(t_fractal *fractal);
+void	handle_pixel(int x, int y, t_fractal *fractal);
+
+//	events.c
+int key_handler(int key, t_fractal *fractal);
+int	mouse_handler(int btn, t_fractal *fractal);
+int	julia(int x, int y, t_fractal *fractal);
+int close_handler(t_fractal *fractal);
+
 #endif

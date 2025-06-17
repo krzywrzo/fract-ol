@@ -6,7 +6,7 @@
 /*   By: kwrzosek <kwrzosek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 13:28:10 by kwrzosek          #+#    #+#             */
-/*   Updated: 2025/06/17 15:43:01 by kwrzosek         ###   ########.fr       */
+/*   Updated: 2025/06/17 19:58:19 by kwrzosek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int main (int argc, char **argv)
 	{
 		// TODO 
 		// mlx stuff
+		if (!ft_strncmp(argv[1], "julia", 5))
+		{
+			fractal.julia_x = atodbl(argv[3]);
+			fractal.julia_y = atodbl(argv[4]);
+		}
 		fractal.name = argv[1];
 		ft_init_win(&fractal);
 		fractal_init(&fractal);

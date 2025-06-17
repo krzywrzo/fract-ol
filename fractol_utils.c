@@ -6,18 +6,28 @@
 /*   By: kwrzosek <kwrzosek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:47:28 by kwrzosek          #+#    #+#             */
-/*   Updated: 2025/06/17 15:37:13 by kwrzosek         ###   ########.fr       */
+/*   Updated: 2025/06/17 20:09:45 by kwrzosek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+//	LINUX VERSION
+// void	events_init(t_fractal *fractal)
+// {
+// 	mlx_hook(fractal->mlx_win_ptr, KeyPress, KeyPressMask, key_handler, fractal);
+// 	mlx_hook(fractal->mlx_win_ptr, ButtonPress, ButtonPressMask, mouse_handler, fractal);
+// 	mlx_hook(fractal->mlx_win_ptr, DestroyNotify, StructureNotifyMask, close_handler, fractal);
+// 	mlx_hook(fractal->mlx_win_ptr, MotionNotify, PointerMotionMask, julia, fractal);
+// }
+
+//	MAC VERSION
 void	events_init(t_fractal *fractal)
 {
-	mlx_hook(fractal->mlx_win_ptr, KeyPress, KeyPressMark, key_handler, fractal);
-	mlx_hook(fractal->mlx_win_ptr, ButtonPress, ButtonPressMask, mouse_handler, fractal);
-	mlx_hook(fractal->mlx_win_ptr, DestroyNotify, StructureNotifyMask, close_handler, fractal);
-	mlx_hook(fractal->mlx_win_ptr, MotionNotify, PointerMotionMask, julia_track, fractal);
+	mlx_hook(fractal->mlx_win_ptr, KEY_PRESS, 0, key_handler, fractal);
+	mlx_hook(fractal->mlx_win_ptr, BUTTON_PRESS, 0, mouse_handler, fractal);
+	mlx_hook(fractal->mlx_win_ptr, DESTROY_NOTIFY, 0, close_handler, fractal);
+	mlx_hook(fractal->mlx_win_ptr, MOTION_NOTIFY, 0, julia, fractal);
 }
 void	data_init(t_fractal *fractal)
 {
@@ -46,7 +56,7 @@ void	fractal_init(t_fractal *fractal)
 	}
 	fractal->img.pixel_ptr = mlx_get_data_addr(fractal->img.img_ptr, &fractal->img.bpp,
 											 &fractal->img.line_len, &fractal->img.endian);
-	// events_init(fractal);	//	TODO
+	events_init(fractal);
 	data_init(fractal);	
 }
 
